@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snazzy Countdown Timer</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            text-align: center;
+            background-color: #f8f8f8;
+            background-image: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+            color: #ffffff;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            font-weight: 500;
+            margin-bottom: 40px;
+            text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #countdown {
+            font-size: 2em;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 5px;
+            padding: 20px 40px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #countdown span {
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Countdown to May 24th at 12:00 PM Central Time</h1>
+    <div id="countdown">00d <span></span> 00h <span></span> 00m <span></span> 00s</div>
+
+    <script>
+        function updateCountdown() {
+            const countdownDisplay = document.getElementById("countdown");
+            const targetDate = new Date("2023-05-24 12:00:00").getTime() - (6 * 60 * 60 * 1000); // 6 hours difference from UTC to Central Time
+            const now = new Date().getTime();
+            const timeRemaining = targetDate - now;
+            
+            if (timeRemaining < 0) {
+                countdownDisplay.innerHTML = "00d <span></span> 00h <span></span> 00m <span></span> 00s";
+                clearInterval(updateInterval);
+                return;
+            }
+
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            countdownDisplay.innerHTML = `${days.toString().padStart(2, '0')}d <span></span> ${hours.toString().padStart(2, '0')}h <span></span> ${minutes.toString().padStart(2, '0')}m <span></span
+
+            ${seconds.toString().padStart(2, '0')}s`;
+        }
+
+        const updateInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
+
