@@ -44,16 +44,16 @@
     </style>
 </head>
 <body>
-    <h1>Countdown to May 24th at 12:00 PM Central Time</h1>
+    <h1>Countdown to July 1 at 6:00 PM Central Time</h1>
     <div id="countdown">00d <span></span> 00h <span></span> 00m <span></span> 00s</div>
 
     <script>
         function updateCountdown() {
             const countdownDisplay = document.getElementById("countdown");
-            const targetDate = new Date("2023-05-24 12:00:00").getTime() - (6 * 60 * 60 * 1000); // 6 hours difference from UTC to Central Time
+            const targetDate = new Date("2023-07-01 18:00:00").getTime() - (6 * 60 * 60 * 1000); // 6 hours difference from UTC to Central Time
             const now = new Date().getTime();
             const timeRemaining = targetDate - now;
-            
+
             if (timeRemaining < 0) {
                 countdownDisplay.innerHTML = "00d <span></span> 00h <span></span> 00m <span></span> 00s";
                 clearInterval(updateInterval);
